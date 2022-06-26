@@ -5,3 +5,15 @@ db.sqlite3
 settings_local.py
 .DS_Store
 /media
+
+# Heroku:
+env/
+*.pyc
+*.pyo
+*.json
+db.sqlite3
+settings_local.py
+media/
+*.sqlite3
+.env
+.DS_Store
