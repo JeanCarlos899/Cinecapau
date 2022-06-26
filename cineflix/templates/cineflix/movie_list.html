@@ -1,0 +1,45 @@
+{% extends "cineflix/base.html" %}
+
+{% block title %}Listagem dos filmes{% endblock %}
+
+
+
+
+{% block content %}
+<form class="form-horizontal mb-4" action="." method="GET">
+    <div class="input-group">
+        <input id="search_box" name="search_box" type="text" placeholder="Informe o nome do filme ou gênero" class="form-control" autofocus="true" value="{{ request.GET.search_box }}">
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-default form-control" title="Clique para realizar a pesquisar">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </span>
+    </div>
+</form>
+<h5 class="text-center">FILMES CADASTRADOS</h5>
+{% if object_list.count > 0 %}
+    <div class="row">
+        {% for movie in object_list %}
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img class="card-img-top" src="{{ movie.poster.url }}" alt="" style="height: 370px; width: 100%; background-size: cover; border-radius: 5px;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;"> {{ movie.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> Gênero: {{ movie.genre }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted"> Duração: {{ movie.duration }}</h6>
+                        <a class="btn btn-outline-info" href="{{ movie.get_absolute_url }} ">Detalhes</a>
+                        <a class="btn btn-outline-primary" href="{% url 'cineflix:movie_update' movie.pk %}">Editar</a>
+                        <a class="btn btn-outline-danger" href="{% url 'cineflix:movie_delete' movie.pk %}">Remover</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+
+    <p>Nenhum filme encontrado!</p>
+
+{% endif %}
+
+{% endblock content %}
+

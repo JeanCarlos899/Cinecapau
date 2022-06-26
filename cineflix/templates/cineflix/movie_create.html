@@ -1,0 +1,32 @@
+
+{% extends "cineflix/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Criar Filme {% endblock %}
+{% block content %}
+
+<h1 class="my-5"> Cadastrar filme </h1>
+
+<form method = "post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row">
+        {% for field in form %}
+                <div class="col-md-4 mb-4">
+                    <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
+                    {% if field.name == 'duration' %}
+                        {{ field | add_class:"form-control" |attr:"type:time" }}
+                    {% else %}
+                        {{ field | add_class:"form-control" }}
+                    {% endif %}
+                </div>
+        {% endfor %}
+    </div>
+    <input type="submit" class="btn btn-outline-success" value="Cadastrar">
+    <a class="btn btn-outline-dark" href="{% url 'cineflix:movie_list' %}">Voltar</a>
+</form>
+
+{% endblock %}
+
+
+
+
+

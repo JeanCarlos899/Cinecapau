@@ -1,0 +1,15 @@
+
+
+
+{% extends "cineflix/base.html" %}
+{% block title %} Sucesso {% endblock %}
+
+    
+    
+{% block content %}	
+    <h4>Filme cadastrado com sucesso!</h4>
+    <a class="btn btn-outline-success" href="{% url 'cineflix:movie_list' %}">Confirmar</a>
+{% endblock %}
+
+
+

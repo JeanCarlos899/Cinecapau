@@ -1,0 +1,13 @@
+{% extends "cineflix/base.html" %}
+
+{% block title %} Apagar {% endblock %}
+
+    
+    
+{% block content %}	
+<form method="post">{% csrf_token %}
+    <p>Tem certeza que deseja remover o Filme "{{ object }}"?</p>
+    <input class="btn btn-outline-danger" type="submit" value="Confirmar">
+    <a class="btn btn-outline-success" href="{% url 'cineflix:movie_list' %}">Voltar</a>
+</form>
+{% endblock %}
