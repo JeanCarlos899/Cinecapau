@@ -15,7 +15,11 @@
                     {% if field.name == 'duration' %}
                         {{ field | add_class:"form-control" |attr:"type:time" }}
                     {% else %}
-                        {{ field | add_class:"form-control" }}
+                        {% if field.name == 'description' %}
+                            {{ field | add_class:"form-control" | attr:"rows:5" }}
+                        {% else %}
+                            {{ field | add_class:"form-control" }}
+                        {% endif %}
                     {% endif %}
                 </div>
         {% endfor %}
